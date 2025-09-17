@@ -3,48 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ-ExpertReview</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="description" content="FAQ-ExpertReview provides in-depth reviews and helpful guides. Connect your Pinterest account to explore content and create Pins.">
+  <title>Pinterest Callback</title>
 </head>
 <body>
-  <header>
-    <h1>FAQ-ExpertReview</h1>
-    <p>Your source for in-depth reviews and helpful guides.</p>
-  </header>
-
-  <main>
-    <section>
-      <h2>About This Site</h2>
-      <p>We provide detailed reviews of products and services to help users make informed decisions. Our content is designed for educational purposes and content discovery on Pinterest.</p>
-    </section>
-
-    <section>
-      <h2>Our Content</h2>
-      <p>Browse our review articles and guides to discover trusted recommendations and useful insights.</p>
-    </section>
-
-    <section>
-      <h2>Connect Your Pinterest Account</h2>
-      <button id="pinterest-login" style="background-color:#E60023;color:white;border:none;padding:12px 24px;font-size:16px;cursor:pointer;">
-        Connect with Pinterest
-      </button>
-      <p id="status"></p>
-    </section>
-  </main>
-
-  <footer>
-    <p><a href="privacy-policy.html">Privacy Policy</a></p>
-  </footer>
+  <h1>Pinterest OAuth Callback</h1>
+  <p id="message"></p>
 
   <script>
-    // Demo-safe Pinterest button for video recording
-    document.getElementById("pinterest-login").addEventListener("click", () => {
-      // Opens Pinterest login page in a new tab for demonstration
-      const DEMO_URL = "https://www.pinterest.com/login/";
-      window.open(DEMO_URL, "_blank");
-      document.getElementById("status").innerText = "Opening Pinterest login page for demo...";
-    });
+    // Parse query parameters
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const state = params.get("state");
+
+    if (code) {
+      document.getElementById("message").innerText = "Connected to Pinterest successfully! 🎉";
+      console.log("Authorization code received:", code);
+      console.log("State:", state);
+      // Optional: send code to your server for token exchange if you want
+    } else {
+      document.getElementById("message").innerText = "Authorization failed or cancelled.";
+    }
   </script>
 </body>
 </html>
