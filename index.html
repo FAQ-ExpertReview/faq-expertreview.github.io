@@ -38,18 +38,13 @@
   </footer>
 
   <script>
-    // Pinterest OAuth configuration
-    const CLIENT_ID = "1531296"; // Pinterest App ID
-    const REDIRECT_URI = "https://faq-expertreview.github.io/pinterest-callback.html"; // GitHub Pages callback
-    const SCOPES = "pins:read,pins:write,boards:read"; // Required scopes for PIMs
-    const STATE = "secure_random_string_123"; // CSRF protection, can be any random string
-
-    // Button click starts OAuth flow
+    // Demo-safe Pinterest button for video recording
     document.getElementById("pinterest-login").addEventListener("click", () => {
-      const authUrl = `https://www.pinterest.com/oauth/?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${encodeURIComponent(SCOPES)}&state=${STATE}`;
-      window.location.href = authUrl;
+      // Opens Pinterest login page in a new tab for demonstration
+      const DEMO_URL = "https://www.pinterest.com/login/";
+      window.open(DEMO_URL, "_blank");
+      document.getElementById("status").innerText = "Opening Pinterest login page for demo...";
     });
   </script>
 </body>
 </html>
-
