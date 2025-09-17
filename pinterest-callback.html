@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinterest OAuth Callback</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Pinterest Authorization</h1>
+  </header>
+
+  <main>
+    <section>
+      <p id="message">Processing Pinterest authorization...</p>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="privacy-policy.html">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+    // Parse query string to get ?code= and ?state=
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+
+    if (code) {
+      document.getElementById('message').innerText = 
+        "Pinterest authorization successful! Code received: " + code + 
+        "\nUse this code to exchange for an access token server-side.";
+    } else {
+      document.getElementById('message').innerText = 
+        "No authorization code detected. Please try connecting again.";
+    }
+  </script>
+</body>
+</html>
