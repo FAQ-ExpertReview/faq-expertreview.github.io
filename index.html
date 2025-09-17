@@ -1,12 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="p:domain_verify" content="e4920a3bec3517e39ed726a6ee4996e7"/>
-  
   <title>FAQ-ExpertReview</title>
   <link rel="stylesheet" href="style.css">
+  <meta name="description" content="FAQ-ExpertReview provides in-depth reviews and helpful guides. Connect your Pinterest account to explore content and create Pins.">
 </head>
 <body>
   <header>
@@ -24,11 +24,30 @@
       <h2>Our Content</h2>
       <p>Browse our review articles and guides to discover trusted recommendations and useful insights.</p>
     </section>
+
+    <section>
+      <h2>Connect Your Pinterest Account</h2>
+      <button id="pinterest-login" style="background-color:#E60023;color:white;border:none;padding:12px 24px;font-size:16px;cursor:pointer;">
+        Connect with Pinterest
+      </button>
+      <p id="status"></p>
+    </section>
   </main>
 
   <footer>
     <p><a href="privacy-policy.html">Privacy Policy</a></p>
   </footer>
+
+  <script>
+    const CLIENT_ID = "1531296"; // Your Pinterest App ID
+    const REDIRECT_URI = "https://yourusername.github.io/pinterest-callback.html"; // GitHub Page that handles redirect
+    const SCOPES = "pins:read,pins:write,boards:read"; // Minimum scopes for PIMs
+    const STATE = "random_generated_string"; // Protect against CSRF
+
+    document.getElementById("pinterest-login").addEventListener("click", () => {
+      const authUrl = `https://www.pinterest.com/oauth/?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${encodeURIComponent(SCOPES)}&state=${STATE}`;
+      window.location.href = authUrl;
+    });
+  </script>
 </body>
 </html>
-
